@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "babel server.js --out-file server.compiled.js"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",

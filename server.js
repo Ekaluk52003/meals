@@ -4,7 +4,6 @@ const path = require("path");
 const cors = require("cors");
 const fs = require("fs");
 const morgan = require("morgan");
-const cookieParser = require("cookie-parser");
 const { PORT = 3000 } = process.env;
 
 const app = express();
