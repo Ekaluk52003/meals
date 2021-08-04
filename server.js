@@ -5,7 +5,7 @@ const cors = require("cors");
 const fs = require("fs");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
-const { port = 3000 } = process.env;
+const { PORT = 3000 } =  process.env;
 
 const app = express();
 
@@ -19,7 +19,8 @@ fs.readdirSync("./routes").map((r) =>
 );
 
 //make static folder
-app.use(express.static(path.join(__dirname, "/client/build")));
+// app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // redirect to file
 app.get("*", (req, res) =>
@@ -29,6 +30,6 @@ app.get("*", (req, res) =>
 // Get all Restaurants
 
 // const port = process.env.PORT || 3001;
-app.listen(port, () => {
-  console.log(`server is up and listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening at port ${PORT}.`);
 });
