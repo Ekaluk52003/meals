@@ -19,8 +19,8 @@ fs.readdirSync("./routes").map((r) =>
 );
 
 //make static folder
-// app.use(express.static(path.join(__dirname, "/client/build")));
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.join(__dirname, "/client/build")));
+// app.use(express.static(path.join(__dirname, "client", "build")));
 
 // redirect to file
 app.get("*", (req, res) =>

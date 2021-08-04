@@ -1,6 +1,7 @@
 "use strict";
 
-// require("dotenv").config();
+require("dotenv").config();
+
 var express = require("express");
 
 var path = require("path");
@@ -19,22 +20,16 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(morgan("dev")); // fs.readdirSync("./routes").map((r) =>
-//   app.use("/api", require(`./routes/${r}`))
-// );
-//make static folder
-// app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(morgan("dev"));
+fs.readdirSync("./routes").map(function (r) {
+  return app.use("/api", require("./routes/".concat(r)));
+}); //make static folder
 
-app.use(express["static"](path.join(__dirname, 'client', 'build'))); // redirect to file
-// app.get("*", (req, res) =>
-//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-// );
+app.use(express["static"](path.join(__dirname, "/client/build"))); // app.use(express.static(path.join(__dirname, "client", "build")));
+// redirect to file
 
-app.get('/flower', function (req, res) {
-  res.json({
-    name: 'Dandelion New api',
-    colour: 'Blue-ish'
-  });
+app.get("*", function (req, res) {
+  return res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 }); // Get all Restaurants
 // const port = process.env.PORT || 3001;
 
