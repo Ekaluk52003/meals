@@ -5,6 +5,7 @@ const cors = require("cors");
 const fs = require("fs");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const { port = 3000 } = process.env;
 
 const app = express();
 
@@ -27,7 +28,7 @@ app.get("*", (req, res) =>
 
 // Get all Restaurants
 
-const port = process.env.PORT || 3001;
+// const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`server is up and listening on port ${port}`);
 });
