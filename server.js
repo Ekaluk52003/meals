@@ -14,18 +14,26 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
 
-fs.readdirSync("./routes").map((r) =>
-  app.use("/api", require(`./routes/${r}`))
-);
+// fs.readdirSync("./routes").map((r) =>
+//   app.use("/api", require(`./routes/${r}`))
+// );
 
 //make static folder
 // app.use(express.static(path.join(__dirname, "/client/build")));
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // redirect to file
-app.get("*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-);
+// app.get("*", (req, res) =>
+//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+// );
+
+
+app.get('/flower', (req, res) => {
+  res.json({
+    name: 'Dandelion New api',
+    colour: 'Blue-ish'
+  });
+});
 
 // Get all Restaurants
 
