@@ -4,13 +4,15 @@ const path = require("path");
 const cors = require("cors");
 const fs = require("fs");
 const morgan = require("morgan");
-const { PORT = 3000 } = process.env;
+// const { PORT = 3000 } = process.env;
+
+const port = process.env.PORT || "3046";
+// app.set("port", port);
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(cookieParser());
 app.use(morgan("dev"));
 
 fs.readdirSync("./routes").map((r) =>
@@ -29,6 +31,6 @@ app.get("*", (req, res) =>
 // Get all Restaurants
 
 // const port = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server listening at port ${PORT}.`);
+app.listen(port, () => {
+  console.log(`Server listening at port ${port}.`);
 });
