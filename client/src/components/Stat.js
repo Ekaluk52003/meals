@@ -110,7 +110,10 @@ export default function Stat() {
 
   const fetchSumMeals = async () => {
     const res = await axios
-      .get("http://localhost:3001/api/summeals")
+      // .get("http://localhost:3001/api/summeals")
+      .get(
+        "http://ricy-env.eba-mgkejafd.ap-southeast-1.elasticbeanstalk.com/api/summeals"
+      )
       .then((res) => {
         let mealData = res.data.meals;
         mealData = mealData.map(function (obj) {
@@ -131,7 +134,10 @@ export default function Stat() {
   const [max, setMax] = useState(0);
 
   const fetchMeals = async () => {
-    const res = await axios.get("http://localhost:3001/api/meals");
+    // const res = await axios.get("http://localhost:3001/api/meals");
+    const res = await axios.get(
+      "http://ricy-env.eba-mgkejafd.ap-southeast-1.elasticbeanstalk.com/api/meals"
+    );
     setMeals(res.data.meals);
     setMax(res.data.max);
     setMin(res.data.min);
