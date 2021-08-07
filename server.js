@@ -1,13 +1,10 @@
-// require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const fs = require("fs");
 const morgan = require("morgan");
-// const { PORT = 3000 } = process.env;
-
-const port = process.env.PORT || "3046";
-// app.set("port", port);
+const port = process.env.PORT || "3001";
 
 const app = express();
 
