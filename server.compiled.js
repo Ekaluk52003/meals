@@ -9,14 +9,14 @@ var cors = require("cors");
 
 var fs = require("fs");
 
-var morgan = require("morgan");
+var morgan = require("morgan"); // const { PORT = 3000 } = process.env;
 
-var _process$env$PORT = process.env.PORT,
-    PORT = _process$env$PORT === void 0 ? 3000 : _process$env$PORT;
+
+var port = process.env.PORT || "3046"; // app.set("port", port);
+
 var app = express();
 app.use(cors());
 app.use(express.json());
-app.use(cookieParser());
 app.use(morgan("dev"));
 fs.readdirSync("./routes").map(function (r) {
   return app.use("/api", require("./routes/".concat(r)));
@@ -30,6 +30,6 @@ app.get("*", function (req, res) {
 }); // Get all Restaurants
 // const port = process.env.PORT || 3001;
 
-app.listen(PORT, function () {
-  console.log("Server listening at port ".concat(PORT, "."));
+app.listen(port, function () {
+  console.log("Server listening at port ".concat(port, "."));
 });
