@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
 import moment from "moment";
+import mealApi from "../apis/mealApi";
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css";
 import NumericInput from "react-numeric-input";
@@ -109,11 +109,8 @@ export default function Stat() {
   );
 
   const fetchSumMeals = async () => {
-    const res = await axios
-      // .get("http://localhost:3001/api/summeals")
-      .get(
-        "http://ricy-env.eba-mgkejafd.ap-southeast-1.elasticbeanstalk.com/api/summeals"
-      )
+    const res = await mealApi
+      .get("/summeals")
       .then((res) => {
         let mealData = res.data.meals;
         mealData = mealData.map(function (obj) {
@@ -134,10 +131,7 @@ export default function Stat() {
   const [max, setMax] = useState(0);
 
   const fetchMeals = async () => {
-    // const res = await axios.get("http://localhost:3001/api/meals");
-    const res = await axios.get(
-      "http://ricy-env.eba-mgkejafd.ap-southeast-1.elasticbeanstalk.com/api/meals"
-    );
+    const res = await mealApi.get("/meals");
     setMeals(res.data.meals);
     setMax(res.data.max);
     setMin(res.data.min);
@@ -162,7 +156,7 @@ export default function Stat() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/api/meals", {
+      const response = await mealApi.post("/meals", {
         name: selectedMeal,
         oz: oz,
         eat_at: value.format("YYYY-MM-DD HH:mm"),
@@ -180,8 +174,8 @@ export default function Stat() {
 
   const handleSubmitFilter = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:3001/api/filter?startDate='${startDate.toLocaleDateString()}'&endDate='${endDate.toLocaleDateString()}'`
+      const res = await mealApi.get(
+        `/filter?startDate='${startDate.toLocaleDateString()}'&endDate='${endDate.toLocaleDateString()}'`
       );
       console.log(res);
       setDaily(res.data.meals);
@@ -194,9 +188,7 @@ export default function Stat() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3001/api/meals/${id}`
-      );
+      const response = await mealApi.delete(`/meals/${id}`);
       console.log(response);
       handleSubmitFilter();
       fetchMeals();
