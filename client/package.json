@@ -20,7 +20,7 @@
     "react-scripts": "4.0.3",
     "recharts": "^2.0.10"
   },
-  "proxy": "http://localhost:3001/",
+
   "scripts": {
     "start": "craco start",
     "build": "craco build",
