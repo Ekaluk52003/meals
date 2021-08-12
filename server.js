@@ -18,10 +18,10 @@ fs.readdirSync("./routes").map((r) =>
 
 if (process.env.NODE_ENV === "production") {
   //make static folder
-  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.use(express.static(path.join(__dirname, "/client/IonicBuild")));
   app.get("*", (req, res) =>
     // redirect to file
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+    res.sendFile(path.resolve(__dirname, "client", "IonicBuild", "index.html"))
   );
 } else {
   app.get("/", (req, res) => {
