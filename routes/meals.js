@@ -68,7 +68,7 @@ router.get("/filter", async (req, res) => {
   const { startDate, endDate } = req.query;
   const query = `
   SELECT id, meal_name,oz,
-  to_char(eat_at, 'Dy, DD-Mon-YY HH12:MI am') as eat_at,
+  to_char(eat_at, 'Dy, DD-Mon-YY HH24:MI') as eat_at,
   CASE
       WHEN eat_at::time > '04:00'
       AND eat_at::time <= '11:00'
